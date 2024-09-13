@@ -45,6 +45,23 @@ const EVENT_MAP = {
     action: (e) =>
       document.body.style.setProperty('--handwriting-font', e.target.value)
   },
+  '#page-size': {
+    on: 'change',
+    action: (e) => {
+      const pageSize = e.target.value;
+      const pageEl = document.querySelector('.page-a');
+
+      const validSizes = ['a4', 'letter', 'ledger'];
+
+      // Remove all size classes
+      pageEl.classList.remove(...validSizes);
+
+      // Add the selected size class if it's valid
+      if (validSizes.includes(pageSize)) {
+        pageEl.classList.add(pageSize);
+      }
+    }
+  },
   '#font-size': {
     on: 'change',
     action: (e) => {
